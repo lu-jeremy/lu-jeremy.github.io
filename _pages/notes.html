@@ -1,0 +1,31 @@
+---
+title: "Notes"
+permalink: /notes/
+author_profile: false
+---
+
+{% include base_path %}
+
+<p>Tutorials, notes, and derivations.</p>
+
+<div class="notes-list">
+  {% assign sorted_notes = site.notes | sort: 'date' | reverse %}
+  {% for note in sorted_notes %}
+    <div class="notes-list__item">
+      <h2 class="notes-list__title">
+        <a href="{{ note.url | prepend: base_path }}">{{ note.title }}</a>
+      </h2>
+      {% if note.excerpt %}
+        <p class="notes-list__excerpt">{{ note.excerpt | markdownify | strip_html }}</p>
+      {% endif %}
+      {% assign published_str = note.date | date: "%b %-d, %Y" %}
+      {% assign modified_str = note.last_modified_at | default: note.date | date: "%b %-d, %Y" %}
+      <p class="notes-list__meta">
+        Published {{ published_str }}
+        {% unless modified_str == published_str %}
+          &middot; Updated {{ modified_str }}
+        {% endunless %}
+      </p>
+    </div>
+  {% endfor %}
+</div>

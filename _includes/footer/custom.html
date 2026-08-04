@@ -1,7 +1,28 @@
 <!-- start custom footer snippets -->
 
 
-<!-- Support for MatJax -->
+<!-- Support for MathJax -->
+<script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']],
+      displayMath: [['$$', '$$'], ['\\[', '\\]']],
+      processEscapes: true,
+      tags: 'ams',
+      macros: {
+        R: '{\\mathbb{R}}',
+        laplace: '{\\Delta}',
+        norm: ['{\\left\\lVert #1 \\right\\rVert}', 1],
+        abs: ['{\\left\\lvert #1 \\right\\rvert}', 1],
+        pr: ['{\\left( #1 \\right)}', 1],
+        dd: '{\\,\\mathrm{d}}'
+      }
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+  };
+</script>
 <script defer src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script"></script>
 

@@ -84,7 +84,7 @@ publication_category:
   books:
     title: 'Books'
   manuscripts:
-    title: 'Journal Articles'    
+    title: 'Preprints'
   conferences:
     title: 'Conference Papers'
 
@@ -214,10 +214,14 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  math_engine: null   # emit raw $...$ / $$...$$ so MathJax v3 renders it client-side
 
 
 # These settings control the types of collections used by the template
 collections:
+  notes:
+    output: true
+    permalink: /notes/:path/
   teaching:
     output: true
     permalink: /:collection/:path/
@@ -240,7 +244,7 @@ defaults:
       type: posts
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       read_time: true
       comments: true
       share: true
@@ -251,14 +255,14 @@ defaults:
       type: pages
     values:
       layout: single
-      author_profile: true
+      author_profile: false
   # _teaching
   - scope:
       path: ""
       type: teaching
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
       comments: true
   # _publications
@@ -267,7 +271,7 @@ defaults:
       type: publications
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
       comments: true
   # _portfolio
@@ -276,7 +280,7 @@ defaults:
       type: portfolio
     values:
       layout: single
-      author_profile: true
+      author_profile: false
       share: true
       comment: true
   # _talks
@@ -285,8 +289,19 @@ defaults:
       type: talks
     values:
       layout: talk
-      author_profile: true
+      author_profile: false
       share: true
+  # _notes
+  - scope:
+      path: ""
+      type: notes
+    values:
+      layout: single
+      author_profile: false
+      toc: true
+      toc_label: "Contents"
+      toc_sticky: true
+      classes: wide
 
 
 # Sass/SCSS

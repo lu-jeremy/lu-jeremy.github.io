@@ -1,16 +1,19 @@
 ---
+# In progress — hidden from nav and sitemap until you add talks.
+# Add one by copying _talks/_template.md. Re-link in _data/navigation.yml when ready.
 layout: archive
-title: "Talks and presentations"
+title: "Talks"
 permalink: /talks/
-author_profile: true
+author_profile: false
+sitemap: false
+classes:
+  - left-column
 ---
 
-{% if site.talkmap_link == true %}
-
-<p style="text-decoration:underline;"><a href="/talkmap.html">See a map of all the places I've given a talk!</a></p>
-
+{% if site.talks.size > 0 %}
+  {% for post in site.talks reversed %}
+    {% include archive-single-talk.html %}
+  {% endfor %}
+{% else %}
+  <p>Talks coming soon.</p>
 {% endif %}
-
-{% for post in site.talks reversed %}
-  {% include archive-single-talk.html %}
-{% endfor %}

@@ -14,23 +14,10 @@ main:
   - title: "Notes"
     url: /notes/
 
-  #- title: "Talks"
-  #  url: /talks/    
-
-  #- title: "Teaching"
-  #  url: /teaching/    
-    
-  # - title: "Portfolio"
-  #  url: /portfolio/
-        
-  # - title: "Blog Posts"
-  #  url: /year-archive/
-    
-  # - title: "CV"
-  #  url: /cv/
-    
-  # - title: "CV"
-  #   url: /cv-json/
-    
-  #- title: "Guide"
-  #  url: /markdown/
+  # In progress — uncomment to publish once you've added content:
+  # - title: "Talks"
+  #   url: /talks/
+  # - title: "Projects"
+  #   url: /projects/
+  # - title: "CV"          # activates after you upload /files/Lu_Jeremy_CV.pdf
+  #   url: /cv/

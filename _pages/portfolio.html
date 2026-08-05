@@ -1,14 +1,22 @@
 ---
+# In progress — hidden from nav and sitemap. Pubs currently double as projects,
+# so this stays dormant. Add entries via _portfolio/_template.md and re-link in
+# _data/navigation.yml if you ever want a separate Projects section.
 layout: archive
-title: "Portfolio"
-permalink: /portfolio/
-author_profile: true
+title: "Projects"
+permalink: /projects/
+author_profile: false
+sitemap: false
+classes:
+  - left-column
 ---
 
 {% include base_path %}
 
-
-{% for post in site.portfolio %}
-  {% include archive-single.html %}
-{% endfor %}
-
+{% if site.portfolio.size > 0 %}
+  {% for post in site.portfolio %}
+    {% include archive-single.html %}
+  {% endfor %}
+{% else %}
+  <p>Projects coming soon.</p>
+{% endif %}

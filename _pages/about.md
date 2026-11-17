@@ -2,60 +2,50 @@
 permalink: /
 title: ""
 author_profile: false
+classes:
+  - home
 redirect_from: 
   - /about/
   - /about.html
 ---
 
-<div class="hero">
-  <img class="hero__avatar" src="{{ '/images/bio_photo.jpg' | prepend: site.baseurl }}" alt="Jeremy Lu" />
-  <h1 class="hero__name">Jeremy Lu</h1>
-  <p class="hero__tagline">Machine learning &middot; Purdue University</p>
-  <div class="hero__links">
-    <a href="mailto:lu1008@purdue.edu"><i class="fas fa-envelope"></i> Email</a>
-    <a href="https://scholar.google.com/citations?user=1lFsfhkAAAAJ&hl=en"><i class="ai ai-google-scholar"></i> Scholar</a>
-    <a href="https://github.com/lu-jeremy"><i class="fab fa-github"></i> GitHub</a>
-    <a href="https://www.linkedin.com/in/lu-jeremy"><i class="fab fa-linkedin"></i> LinkedIn</a>
+{% include base_path %}
+
+<div class="about">
+  <div class="about__photo">
+    <img src="{{ base_path }}/images/headshot.jpg" alt="Jeremy Lu">
+    <div class="about__contact">
+      <div class="about__email">lu1008 (at) purdue (dot) edu</div>
+      <div class="about__icons">
+        <a href="https://scholar.google.com/citations?user=1lFsfhkAAAAJ&hl=en" title="Google Scholar" aria-label="Google Scholar"><i class="ai ai-google-scholar"></i></a>
+        <a href="https://github.com/lu-jeremy" title="GitHub" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/lu-jeremy" title="LinkedIn" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
   </div>
+
+  <h1 class="about__name"><b>Jeremy</b> Lu</h1>
+
+  <p>I am a final-year undergraduate student at Purdue University in Computer Science Honors, Statistics, and Mathematics, supervised by Professor <a href="https://ruqizhang.github.io/">Ruqi Zhang</a>.</p>
+
+  <p>My research focuses on probabilistic machine learning (e.g., variational inference, Langevin dynamics, measure transport) and, currently, diffusion language models (see our paper on <a href="https://arxiv.org/abs/2607.10951">Sticky Jump Diffusions</a>, NeurIPS 2026). More recently, I have been interested in dynamical systems for recursive reasoning.</p>
+
+  <p>Previously, I completed internships at Amazon Artificial General Intelligence (AGI) in Summer 2025 and 2026 and worked on multi-agent planning in robotics at Purdue's <a href="https://corallab.net/">CoRAL Lab</a>.</p>
 </div>
 
-I am a fourth-year undergraduate student at Purdue University in 
-Computer Science Honors, Statistics Honors, and Mathematics (expected 2027).
+<h2>News</h2>
+<table class="news">
+  <tr><th>Sep 2026</th><td><em>Sticky Jump Diffusions</em> was accepted at NeurIPS 2026!</td></tr>
+  <tr><th>Jul 2026</th><td>Our preprint <a href="https://arxiv.org/abs/2607.10951"><em>Sticky Jump Diffusions</em></a> is out on arXiv.</td></tr>
+  <tr><th>May 2026</th><td>Started another internship at Amazon AGI in Sunnyvale, CA.</td></tr>
+  <tr><th>Jan 2026</th><td><em>Graphs-of-Constraints MPC</em> was accepted at ICRA 2026!</td></tr>
+  <tr><th>May 2025</th><td>Started an internship at Amazon AGI in Sunnyvale, CA.</td></tr>
+</table>
 
-I build fundamental frameworks that view structured prediction and reasoning from a generative lens, spanning
-probabilistic modeling, variational inference, and flows across 
-continuous, discrete, and hybrid settings.
-
-I currently focus on jump diffusion
-processes for discrete and continuous generation across text, image, and puzzle-solving tasks 
-working with Professor [Ruqi Zhang](https://ruqizhang.github.io).
-I worked on simulated and real-world environments for multi-agent robotics at the [CoRAL](https://corallab.net/) lab under Professor
-[Ahmed Qureshi](https://qureshiahmed.github.io/).
-
-I completed internships at Amazon AGI in 2025 and 2026 where I developed
-benchmarking tools for Amazon Nova Sonic's speech and text models.
-
-## Research Interests
-
-- **Generative models**: latent reasoning in discrete and continuous diffusions, unifying diffusion, flows, bridges, and interpolants, reward steering, search over generation.
-- **Probabilistic ML**: simulation-free sampling, MCMC, Langevin Dynamics, SDEs, Poisson processes, Fokker-Planck and continuity PDEs.
-- **Applications to robotics**: TAMP, goal-conditioned diffusion policies.
-
-## News
-
-- **Jul 2026**: Preprint for *Sticky Jump Diffusions* released on [arXiv](https://arxiv.org/abs/2607.10951).
-- **May 2026**: Returned to Amazon AGI in Sunnyvale, CA.
-- **Jan 2026**: *Graphs-of-Constraints MPC* has been accepted at **ICRA 2026**!
-- **May 2025**: Interned at Amazon AGI in Sunnyvale, CA.
-
-## Selected Publications
-
-- **Sticky Jump Diffusions: A Unifying View of Masked, Continuous, and Hybrid Diffusion.**
-  P. Jutras-Dubé, P. Pynadath, **J. Lu**, Y. Gao, R. Zhang. *Preprint*, 2026.
-  [arXiv](https://arxiv.org/abs/2607.10951)
-- **Graphs-of-Constraints Model Predictive Control for Reactive Multi-agent Task and Motion Planning.**
-  A. Manganaris, **J. Lu**, A. H. Qureshi, S. Jagannathan. *ICRA*, 2026.
-  [arXiv](https://arxiv.org/abs/2603.18400) · [Demo](https://sites.google.com/view/goc-mpc/home)
-
-See all publications on the [Publications]({{ base_path }}/publications/) page.
-
+<h2>Publications</h2>
+{% assign pubs = site.publications | sort: "date" | reverse %}
+<div class="publications">
+{% for post in pubs %}
+  {% include pub-entry.html pub=post %}
+{% endfor %}
+</div>

@@ -3,34 +3,19 @@ layout: archive
 title: "Publications"
 permalink: /publications/
 author_profile: false
-classes:
-  - left-column
 ---
 
 {% include base_path %}
 
-<!-- New style rendering if publication categories are defined -->
-{% if site.publication_category %}
-  {% for category in site.publication_category  %}
-    {% assign title_shown = false %}
-    {% for post in site.publications reversed %}
-      {% if post.category != category[0] %}
-        {% continue %}
-      {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
-    {% endfor %}
-  {% endfor %}
-{% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
-{% endif %}
-
-
-{% if site.author.googlescholar %}
-  <div class="wordwrap">A full publication list can be viewed on <a href="{{site.author.googlescholar}}">Google Scholar</a>.</div>
-{% endif %}
+{% assign pubs = site.publications | sort: "date" | reverse %}
+{% assign current_year = "" %}
+<div class="publications">
+{% for post in pubs %}
+  {% assign year = post.date | date: "%Y" %}
+  {% if year != current_year %}
+    <h2 class="pubs-year">{{ year }}</h2>
+    {% assign current_year = year %}
+  {% endif %}
+  {% include pub-entry.html pub=post %}
+{% endfor %}
+</div>

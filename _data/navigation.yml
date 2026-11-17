@@ -11,10 +11,10 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Notes"
-    url: /notes/
-
   # In progress — uncomment to publish once you've added content:
+  # - title: "Notes"       # hidden while the tutorials are being polished;
+  #   url: /notes/         # also set `output: true` for notes in _config.yml and
+  #                        # remove `published: false` from _pages/notes.html
   # - title: "Talks"
   #   url: /talks/
   # - title: "Projects"

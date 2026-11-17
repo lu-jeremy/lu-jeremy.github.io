@@ -1,339 +1,249 @@
 /* ==========================================================================
-   CUSTOM POLISH LAYER
-   Imported last in main.scss so it overrides the base academicpages theme.
-   Purpose: refined typography, spacing, links, cards, avatar, hero, and
-   subtle motion — without touching the theme's core structure.
+   SITE STYLES
+   Imported last in main.scss, so these override the academicpages theme.
+   Plain academic layout: one centered column, Roboto, no animations.
    ========================================================================== */
 
-/* ---- Smooth scrolling + reduced-motion respect ---------------------------- */
-html {
-  scroll-behavior: smooth;
-}
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
-    animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-  }
-}
+$content-width: 800px;
 
-/* ---- Base typography ------------------------------------------------------ */
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-size: 1.02em;
-  line-height: 1.65;
-  letter-spacing: -0.003em;
-}
-
-/* Constrain reading measure and give prose room to breathe */
-.page__content {
-  font-size: 1.05rem;
-  p, li {
-    max-width: 68ch;
-  }
-  p { margin-bottom: 1.35em; }
-}
-
-/* Clean Inter headings with tight tracking (the sleek notes look, site-wide) */
-h1, h2, h3, h4, h5, h6 {
   font-family: $sans-serif;
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  font-weight: 300;
+  line-height: 1.6;
   color: var(--global-text-color);
+  -webkit-font-smoothing: antialiased;
 }
-h1 { font-size: 1.9rem; line-height: 1.15; }
-h2 {
-  font-size: 1.35rem;
-  margin-top: 2em;
-  padding-bottom: 0.3em;
-  border-bottom: 1px solid var(--global-border-color);
-}
-h3 { font-size: 1.1rem; }
+b, strong { font-weight: 500; }
 
-/* The h2 already carries an underline; drop any <hr> placed right after one
-   (e.g. the publications template emits `<h2>…</h2><hr />`) to avoid a
-   double line with a gap. */
-h2 + hr { display: none; }
-
-/* ---- Links: subtle underline that thickens on hover ----------------------- */
-a {
-  color: var(--global-link-color);
-  text-decoration: none;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-.page__content a:not(.btn) {
-  border-bottom: 1px solid rgba(120, 130, 160, 0.35);
-  padding-bottom: 0.5px;
-  &:hover {
-    color: var(--global-link-color-hover);
-    border-bottom-color: currentColor;
-  }
-}
-
-/* ---- Masthead / top navigation ------------------------------------------- */
-.masthead {
-  border-bottom: 1px solid var(--global-border-color);
-  background-color: color-mix(in srgb, var(--global-bg-color) 85%, transparent);
-  backdrop-filter: saturate(1.2) blur(8px);
-  -webkit-backdrop-filter: saturate(1.2) blur(8px);
-}
-.greedy-nav {
-  background: transparent;
-  a {
-    font-family: $sans-serif;
-    font-weight: 500;
-    font-size: 0.92rem;
-    &::after {
-      content: "";
-      display: block;
-      height: 2px;
-      width: 0;
-      background: var(--global-accent-color);
-      transition: width 0.2s ease;
-      margin-top: 2px;
-    }
-    &:hover::after { width: 100%; }
-  }
-  .visible-links a.active::after { width: 100%; }
-}
-.site-title { font-family: $sans-serif; font-weight: 600; }
-
-/* ---- Author sidebar / avatar --------------------------------------------- */
-.author__avatar img {
-  border-radius: 50%;
-  max-width: 175px;
-  border: 3px solid var(--global-surface-color);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-  transition: transform 0.25s ease;
-  &:hover { transform: scale(1.03); }
-}
-.author__name {
-  font-family: $sans-serif;
-  font-weight: 600;
-  font-size: 1.4rem;
-}
-.author__bio { color: var(--global-text-color-light); }
-.author__urls {
-  li {
-    font-family: $sans-serif;
-    font-size: 0.9rem;
-    padding: 0.35em 0;
-  }
-  a { color: var(--global-text-color); }
-  a:hover { color: var(--global-accent-color); }
-  .fa, .fab, .fas, .ai {
-    color: var(--global-accent-color);
-    margin-right: 0.35em;
-  }
-}
-
-/* ---- Buttons -------------------------------------------------------------- */
-.btn {
-  border-radius: 8px;
-  font-family: $sans-serif;
-  font-weight: 500;
-  letter-spacing: 0;
-  transition: transform 0.12s ease, box-shadow 0.15s ease, background-color 0.15s ease;
-  &:hover { transform: translateY(-1px); box-shadow: 0 4px 14px rgba(0,0,0,0.15); }
-}
-
-/* ---- Publications / archive list as cards --------------------------------- */
-.archive__item {
-  padding: 1.25rem 1.4rem;
-  border: 1px solid var(--global-border-color);
-  border-radius: 12px;
-  background: var(--global-surface-color);
-  margin-bottom: 1.1rem;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border-color: var(--global-dark-border-color);
-  }
-}
-.archive__item-title {
-  margin-top: 0;
-  font-size: 1.12rem;
-  a { border-bottom: none; }
-}
-.archive__item-excerpt { color: var(--global-text-color-light); font-size: 0.95rem; }
-
-/* ---- Blockquotes ---------------------------------------------------------- */
-blockquote {
-  border-left: 3px solid var(--global-accent-color);
-  background: var(--global-code-background-color);
-  border-radius: 0 8px 8px 0;
-  font-style: normal;
-  color: var(--global-text-color-light);
-}
-
-/* ---- Code ----------------------------------------------------------------- */
-code, pre { font-family: $monospace; }
-.page__content code:not([class]) {
-  background: var(--global-code-background-color);
-  padding: 0.12em 0.4em;
-  border-radius: 5px;
-  font-size: 0.88em;
-}
-
-/* ---- Footer --------------------------------------------------------------- */
-.page__footer {
-  border-top: 1px solid var(--global-border-color);
-  font-family: $sans-serif;
-  font-size: 0.85rem;
-}
-
-/* ---- Entrance animation for main content ---------------------------------- */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ---- Column ----------------------------------------------------------------- */
+#main {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0 1rem;
 }
 .page, .archive {
-  animation: fadeUp 0.5s ease both;
-}
-
-/* ---- Horizontal rules ----------------------------------------------------- */
-hr {
-  border: 0;
-  height: 1px;
-  background: var(--global-border-color);
-  margin: 2.5em 0;
-}
-
-/* ---- MathJax: keep wide display equations from overflowing ---------------- */
-mjx-container[display="true"] {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 0.15em 0;
-}
-
-/* ---- Notes index list ----------------------------------------------------- */
-.notes-list__item {
-  padding: 1.25rem 1.4rem;
-  border: 1px solid var(--global-border-color);
-  border-radius: 12px;
-  background: var(--global-surface-color);
-  margin-bottom: 1.1rem;
-  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    border-color: var(--global-dark-border-color);
-  }
-}
-.notes-list__title {
-  margin: 0 0 0.35rem;
-  padding-bottom: 0;
-  border-bottom: none;
-  font-size: 1.2rem;
-  a { border-bottom: none; }
-}
-.notes-list__excerpt {
-  color: var(--global-text-color-light);
-  font-size: 0.95rem;
-  margin: 0 0 0.5rem;
-}
-.notes-list__meta {
-  font-family: $sans-serif;
-  font-size: 0.82rem;
-  color: var(--global-text-color-light);
-  margin: 0;
-}
-
-/* ---- Sleek content typography (site-wide) --------------------------------- */
-/* The streamlined look from the notes page, promoted everywhere: Inter
-   headings, tighter measure, comfortable body size. */
-.page__content {
-  font-size: 0.95rem;
-  line-height: 1.62;
-  p, li { max-width: 74ch; }
-}
-
-/* ==========================================================================
-   CENTERED SINGLE-COLUMN LAYOUT (no sidebar)
-   With author_profile off, the theme's grid offsets leave content pushed
-   right; recenter it into one comfortable column.
-   ========================================================================== */
-#main {
-  max-width: 780px;
-  margin-left: auto;
-  margin-right: auto;
-}
-.page {
   float: none;
   width: 100%;
-  margin: 0 auto;
+  margin: 0;
   padding: 0;
   clear: both;
 }
+.page__inner-wrap, .page__content { margin: 0; }
+.page__title:empty { display: none; }
 
-/* Pages tagged `classes: [left-column]` (e.g. Publications) use the full
-   content width, left-aligned, as in the original layout — not the narrow
-   centered column applied site-wide. */
-body.left-column #main {
-  max-width: $x-large;
-  margin-left: auto;
-  margin-right: auto;
+.page__content, .archive {
+  font-size: 1rem;
+  p, li { max-width: none; }
+  p { margin: 0 0 1em; }
 }
 
-/* ---- Home hero (centered profile) ----------------------------------------- */
-.hero {
-  text-align: center;
-  margin: 1rem 0 2.5rem;
-  animation: fadeUp 0.5s ease both;
-}
-.hero__avatar {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid var(--global-surface-color);
-  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-  margin: 0 auto 1rem;
-  display: block;
-  transition: transform 0.25s ease;
-  &:hover { transform: scale(1.03); }
-}
-.hero__name {
+/* ---- Headings --------------------------------------------------------------- */
+h1, h2, h3, h4 {
   font-family: $sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
-  letter-spacing: -0.03em;
-  margin: 0 0 0.15rem;
+  color: var(--global-text-color);
+  letter-spacing: 0;
+}
+.page__content h2, .archive h2 {
+  font-size: 1.75rem;
+  font-weight: 400;
+  margin: 2rem 0 1rem;
   padding: 0;
   border: none;
 }
-.hero__tagline {
-  color: var(--global-text-color-light);
-  font-size: 1rem;
-  margin: 0 0 1rem;
+.page__title { font-weight: 400; font-size: 2rem; margin-top: 2rem; }
+h2 + hr { display: none; }
+
+/* ---- Links ------------------------------------------------------------------ */
+a { color: var(--global-link-color); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.page__content a, .archive a { border: none; text-decoration: none; }
+.page__content a:hover, .archive a:hover { text-decoration: underline; }
+
+/* ---- Top bar: name on the left, links on the right -------------------------- */
+.masthead {
+  border-bottom: 1px solid var(--global-border-color);
+  background: var(--global-bg-color);
 }
-.hero__links {
+.masthead__inner-wrap {
+  max-width: $content-width;
+  margin: 0 auto;
+  padding: 0.6rem 1rem;
+}
+.greedy-nav {
+  background: transparent;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.35rem 1.25rem;
-  font-size: 0.92rem;
-  a {
-    color: var(--global-text-color);
-    border-bottom: none;
-    display: inline-flex;
+  .visible-links {
+    display: flex;
     align-items: center;
-    gap: 0.4em;
-    &:hover { color: var(--global-accent-color); }
+    margin-left: auto;          /* right-align; no width:100% so greedy-nav's overflow check still works */
+    li { display: block; }
   }
-  i { color: var(--global-accent-color); }
+  .visible-links .masthead__menu-item--lg { margin-right: 1rem; }
+  button {
+    background: transparent;
+    .navicon, .navicon::before, .navicon::after { background: var(--global-text-color); }
+  }
+  a {
+    font-family: $sans-serif;
+    font-weight: 400;
+    font-size: 1rem;
+    margin: 0 0.5rem;
+    color: var(--global-masthead-link-color);
+    &::before, &::after { display: none !important; }
+    &:hover { color: var(--global-link-color); text-decoration: none; }
+  }
+  .masthead__menu-item--lg a { font-weight: 500; margin-left: 0; }
+}
+body.home .masthead__menu-item--lg { display: none !important; }  /* name is already the page title */
+
+/* ---- About block ------------------------------------------------------------ */
+.about { margin-top: 2rem; }
+.about::after { content: ""; display: table; clear: both; }
+.about__name {
+  font-size: 2.6rem;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 0 0 1.25rem;
+  b { font-weight: 500; }
+}
+.about__photo {
+  float: right;
+  width: 220px;
+  margin: 0.4rem 0 1rem 2rem;
+  text-align: center;
+  img {
+    width: 100%;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  }
+}
+.about__contact {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--global-text-color-light);
+}
+.about__icons {
+  margin-top: 0.35rem;
+  font-size: 1.35rem;
+  a {
+    color: var(--global-text-color-light);
+    margin: 0 0.35rem;
+    &:hover { color: var(--global-link-color); text-decoration: none; }
+  }
+}
+@media (max-width: 640px) {
+  .about__photo { float: none; width: 180px; margin: 0 auto 1.25rem; }
+  .about__name { font-size: 2.1rem; }
 }
 
-/* ---- Refined Inter weights (sleeker, more deliberate hierarchy) ----------- */
-.page__content {
-  h1 { font-weight: 700; letter-spacing: -0.03em; }
-  h2 { font-weight: 650; letter-spacing: -0.02em; }
-  h3 { font-weight: 600; }
-  strong { font-weight: 650; }
+/* ---- News ------------------------------------------------------------------- */
+table.news {
+  display: table;
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  margin: 0;
+  font-size: 1rem;
+  tr, th, td { border: none; background: none; }
+  th {
+    width: 7.5rem;
+    padding: 0.3rem 1rem 0.3rem 0;
+    font-weight: 500;
+    text-align: left;
+    vertical-align: top;
+    white-space: nowrap;
+  }
+  td { padding: 0.3rem 0; font-weight: 300; }
 }
 
-/* Center the home page's title area is empty (title: "") — hide its header gap */
-.page__title:empty { display: none; }
+/* ---- Publications ----------------------------------------------------------- */
+.pub {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 1.5rem;
+  margin: 0 0 1.75rem;
+}
+.pub__preview {
+  img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: contain;
+    background: #fff;
+    border: 1px solid var(--global-border-color);
+    border-radius: 4px;
+  }
+}
+.pub__badge {
+  display: block;
+  margin-bottom: 0.3rem;
+  padding: 0.1rem 0;
+  border-radius: 3px;
+  background: var(--global-link-color);
+  color: var(--global-bg-color);   /* white in light mode, dark in dark mode */
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-align: center;
+}
+.pub__title { font-weight: 500; font-size: 1.02rem; line-height: 1.4; }
+.pub__authors {
+  font-size: 0.95rem;
+  margin-top: 0.15rem;
+  b { font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+}
+.pub__venue { font-size: 0.95rem; color: var(--global-text-color-light); }
+.pub__links { margin-top: 0.5rem; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.page__content .pub__btn, .archive .pub__btn, .pub__btn {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border: 1px solid var(--global-text-color-light);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--global-text-color);
+  font-family: $sans-serif;
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  cursor: pointer;
+  &:hover, &[aria-expanded="true"] {
+    border-color: var(--global-link-color);
+    color: var(--global-link-color);
+    text-decoration: none !important;
+  }
+}
+.pub__abstract {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--global-border-color);
+  border-radius: 4px;
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+@media (max-width: 560px) {
+  .pub { grid-template-columns: 105px 1fr; gap: 0.9rem; }
+  .pub__badge { font-size: 0.68rem; }
+}
+.pubs-year { font-size: 1.35rem !important; color: var(--global-text-color-light); }
+
+/* ---- Misc kept from the theme ----------------------------------------------- */
+code, pre { font-family: $monospace; }
+.page__content code:not([class]) {
+  background: var(--global-code-background-color);
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.88em;
+}
+blockquote {
+  border-left: 3px solid var(--global-border-color);
+  font-style: normal;
+  color: var(--global-text-color-light);
+}
+hr { border: 0; height: 1px; background: var(--global-border-color); margin: 2em 0; }
+mjx-container[display="true"] { overflow-x: auto; overflow-y: hidden; }
+
+.page__footer {
+  border-top: 1px solid var(--global-border-color);
+  font-size: 0.85rem;
+}

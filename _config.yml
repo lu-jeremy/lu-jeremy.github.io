@@ -12,7 +12,7 @@ site_theme               : "default" # Currently available options are "default"
 title                    : "Jeremy Lu"
 title_separator          : "-"
 name                     : &name "Jeremy Lu"
-description              : &description "Jeremy Lu's Personal Website"   # Update this with a general description of your site, this is the default if not overridden by a page
+description              : &description "Jeremy Lu is an undergraduate researcher at Purdue University working on generative models and probabilistic machine learning."   # Update this with a general description of your site, this is the default if not overridden by a page
 url                      : https://lu-jeremy.github.io # The base hostname & protocol for your site e.g. "https://[your GitHub username].github.io",
                                                            # or if you already have some other page hosted on Github then use "https://[your GitHub username].github.io/[Your Repo Name]"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
@@ -23,7 +23,7 @@ repository               : "lu-jeremy/lu-jeremy.github.io"
 #               Additional customization can be done by editing /_includes/author-profile.html
 author:
   # Biographic information
-  avatar           : "bio_photo.jpg"
+  avatar           : "headshot.jpg"
   name             : "Jeremy Lu"
   pronouns         : # example: "she/her"  
   bio              : ""
@@ -220,13 +220,13 @@ kramdown:
 # These settings control the types of collections used by the template
 collections:
   notes:
-    output: true
+    output: false   # hidden while the tutorials are being polished; set true to publish
     permalink: /notes/:path/
   teaching:
     output: true
     permalink: /:collection/:path/
   publications:
-    output: true
+    output: false   # abstracts expand inline on the homepage / Publications page
     permalink: /:collection/:path/
   portfolio:
     output: true

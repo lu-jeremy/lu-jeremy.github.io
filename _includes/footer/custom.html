@@ -36,4 +36,14 @@
     await mermaid.run({querySelector:'code.language-mermaid'});
 </script>
 
+<!-- Publication abstracts expand in place -->
+<script>
+  function togglePubAbstract(btn) {
+    var box = document.getElementById(btn.getAttribute('aria-controls'));
+    var open = box.hasAttribute('hidden');
+    if (open) { box.removeAttribute('hidden'); } else { box.setAttribute('hidden', ''); }
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+</script>
+
 <!-- end custom footer snippets -->

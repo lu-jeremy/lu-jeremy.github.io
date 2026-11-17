@@ -1,0 +1,30 @@
+{% comment %}
+  One publication. Usage: {% include pub-entry.html pub=post %}
+  Front matter used: title, authors (HTML; wrap yourself in <b>), venue, venue_short, date,
+  paperurl, codeurl, demourl, thumbnail (file in /images/pubs/), excerpt (shown as the abstract).
+{% endcomment %}
+{% include base_path %}
+{% assign p = include.pub %}
+{% assign pid = p.id | slugify %}
+<div class="pub">
+  <div class="pub__preview">
+    {% if p.venue_short %}<span class="pub__badge">{{ p.venue_short }}</span>{% endif %}
+    {% if p.thumbnail %}
+      <img src="{{ base_path }}/images/pubs/{{ p.thumbnail }}" alt="Figure from {{ p.title }}" loading="lazy">
+    {% endif %}
+  </div>
+  <div class="pub__body">
+    <div class="pub__title">{{ p.title }}</div>
+    <div class="pub__authors">{{ p.authors }}</div>
+    <div class="pub__venue"><em>{{ p.venue }}</em>, {{ p.date | date: "%Y" }}</div>
+    <div class="pub__links">
+      {% if p.excerpt %}<button type="button" class="pub__btn" aria-expanded="false" aria-controls="abs-{{ pid }}" onclick="togglePubAbstract(this)">Abstract</button>{% endif %}
+      {% if p.paperurl %}<a class="pub__btn" href="{{ p.paperurl }}">{% if p.paperurl contains 'arxiv.org' %}arXiv{% else %}Paper{% endif %}</a>{% endif %}
+      {% if p.codeurl %}<a class="pub__btn" href="{{ p.codeurl }}">Code</a>{% endif %}
+      {% if p.demourl %}<a class="pub__btn" href="{{ p.demourl }}">Website</a>{% endif %}
+    </div>
+    {% if p.excerpt %}
+      <div class="pub__abstract" id="abs-{{ pid }}" hidden>{{ p.excerpt | strip_html }}</div>
+    {% endif %}
+  </div>
+</div>
